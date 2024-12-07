@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      MONDO_DSN: ${MY_SECRET_KEY}
+      MONDO_DB_NAME: ${MONDO_DB_NAME}
+      TELEGRAM_TOKEN: ${TELEGRAM_TOKEN}
+    networks:
+      - backend-network
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - backend-network
+
+volumes:
+  mongo-data:
+
+networks:
+  backend-network:
