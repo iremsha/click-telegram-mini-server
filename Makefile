@@ -7,25 +7,25 @@ run: down build up
 
 build:
 	@echo "Building Docker containers..."
-	docker compose build
+	docker-compose build
 
 up:
 	@echo "Starting Docker containers..."
-	docker compose up
+	docker-compose up
 
 stop:
 	@echo "Stopping Docker containers..."
-	docker compose stop
+	docker-compose stop
 
 down:
 	@echo "Stopping and removing Docker containers..."
-	docker compose down
+	docker-compose down
 
 restart: stop run
 
 clean:
 	@echo "Cleaning up Docker environment..."
-	docker compose down -v --rmi all
+	docker-compose down -v --rmi all
 
 # Golang
 lint:
